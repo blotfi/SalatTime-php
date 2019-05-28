@@ -1,5 +1,5 @@
 # SalatTime-php
-Salat time calculation algorithms in PHP with different convention for European and Arab countries
+Salat time calculation algorithms in PHP with different conventions for European and Arab countries
 ------------------------------------------
 - English
 ------------------------------------------
