@@ -20,7 +20,7 @@ calcst.php	: Calculation of prayer times (Salat) Lotfi BAGHLI 02/2007 - 04/2012
 	for the month add:  &multiinput=m
 	for the year add:  &multiinput=y
 
-algerie.js, france.jvs: Contains the coordinates of cities (name, latitude, longitude) of the country in question, the calculation convention used, daylight saving time (DST), time zone offset (TimeZone),
+algerie.js, france.js: Contains the coordinates of cities (name, latitude, longitude) of the country in question, the calculation convention used, daylight saving time (DST), time zone offset (TimeZone),
 
 ------------------------------------------
 - Français
@@ -41,5 +41,5 @@ calcst.php	:	Calcul des horaires de priere (Salat) Lotfi BAGHLI 02/2007 - 04/201
 	Pour les convention : 0 : France UOIF, 1 : Algérie, 8: Maroc... voir ReadConventions()
 	pour le mois ajouter : &multiinput=m
 	pour l'année ajouter : &multiinput=y
-algerie.js , france.jvs : Contient les coordonnées des villes (nom, latitude, longitude) du pays considéré, la convention de calcul utilisé, l'heure d'été (DST), décallage heure (TimeZone), 
+algerie.js , france.js : Contient les coordonnées des villes (nom, latitude, longitude) du pays considéré, la convention de calcul utilisé, l'heure d'été (DST), décallage heure (TimeZone), 
 			
