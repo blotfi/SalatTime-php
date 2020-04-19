@@ -1,0 +1,151 @@
+@charset "iso-8859-1";
+
+/* modif Pautex 11/2005 */
+a:link    	{ COLOR: #1C23AE; text-decoration: none }
+a:visited 	{ COLOR: #1C23AE; text-decoration: none }
+a:active  	{ COLOR: #1C23AE; text-decoration: none }
+a:hover   { COLOR: #1C23AE; font-weight: bold; text-decoration: none}
+
+
+.tb 	{
+	color: #202020;
+  	font-size: 10px;
+ 	font-family: Arial, Helvetica, sans-serif;
+	}
+
+/* style des tables */
+.tb td 	{
+  	color: #202020;
+  	font-size: 10px;
+  	font-family: verdana, sans-serif;
+	}
+
+.ct2	{ 
+	font-size: 13px; 
+	font-family: Arial, verdana, "MS Sans Serif";
+	color: #FFFFFF;
+	padding-left: 6px;
+	text-align:justify;
+}
+
+.ct3	{ 
+	padding-top: 3px;
+	padding-bottom: 2px;
+	font-size: 11px; 
+	font-family: Arial, verdana, "MS Sans Serif";
+	color: #202020;
+	padding-left: 6px;
+	text-align:left;
+}
+.ct4	{ 
+	font-size: 13px; 
+	font-family: Arial, verdana, "MS Sans Serif";
+	color: #FFFFFF;
+	background-color: #dddddd;
+	padding-left: 6px;
+	text-align:center;
+}
+.ct5	{ 
+	font-size: 13px; 
+	font-family: Arial, verdana, "MS Sans Serif";
+	color: #FFFFFF;
+	background-color: #dddddd;
+	padding-left: 6px;
+	text-align:left;
+}
+
+body {
+	font-size: 10pt;
+	font-family: Verdana, "MS Sans Serif", Arial, Helvetica ;
+	}
+	
+/* definition des balises de presentation texte texte au centre*/
+.sautpage	{page-break-before : always }
+h1	{
+	font-size: 		18px;
+	font-weight: 	bold;
+	}
+h1 em {
+	color: 			#0000AA;
+	font-size:		20pt;
+	font-style:		normal;
+	}
+h2	{
+	font-size:		14pt;
+	font-weight:	normal;
+	text-align:		center;
+	}
+	
+/* dans les publics titre sortant des data */
+.titreRouge		{
+	color: 		#FF0000;
+	font-weight: 	bold;
+	}
+/* entete du site */
+#bandeau {
+	text-align: center;
+	}
+/* contenu du site */
+#header {
+	margin-left: 210px;
+	}
+#textright	{
+	text-align: 	right;
+	margin-right:	20px;
+	}
+/* ---------------- */
+.leftcadre	{
+	float: 		left;
+	border: 	1px solid black;
+	width:		196px;
+	margin-top:	2px;
+	}
+#textright	{
+	text-align: 	right;
+	}
+.headBleu	{
+	color: 		white;
+	font-size: 	12px;
+	padding-top: 2px;
+	font-weight: 	bold;
+	background-color: #2222BB;
+	height: 		16px;
+	border: 0px solid black;
+	border-bottom-width: 1px;
+	text-align: 	center;
+	margin-top: 	0;
+	}
+.espace		{
+	padding: 	5px;
+	}
+.grisbas	{	
+	border: 		0px solid;
+	border-top-width: 1px;
+	background-color: #C8C8C8;
+	height: 		6px;
+	}
+/* table telephone */
+#telephone td {
+	font-size: 	10px;
+	
+	}
+.ens	{
+	margin-top: 20px;
+	}
+.suite	{
+	background-color: #FFFFCC;
+	margin-top: 10px;
+	}
+.leftcadre li {
+	margin-left: 	-15px;
+	}
+#telephone a:hover {
+	font-weight: normal; 
+	text-decoration: underline;
+	}
+/* -------------------- */
+
+
+	
+
+	

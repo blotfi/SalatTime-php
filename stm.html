@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html><!-- L BAGHLI 04/2012 -->
+	<head>
+		<title>Calcul des heures de prières</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+		<meta name="Robots" content="index, follow"/>
+		<meta name="Owner" content="LB"/>
+		<meta name="Language" content="FR"/>
+		<meta name="Rating" content="General"/>
+		<meta name="Distribution" content="Global"/>
+		<meta name="Copyright" content="LB"/>
+		<meta name="KeyWords" content="geo, pos, pnr, vho, gps, positionnement, tracking, suivi, Vehicule, hybride optimum, baghli, Algerie"/>
+		<meta http-equiv="pragma" content="no-cache"/>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="style.css" type="text/css" />
+	</head>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="algerie.js"></script>
+<!--
+<script type="text/javascript" src="maroc.js"></script>
+<script type="text/javascript" src="france.js"></script>
+<script type="text/javascript" src="arabie_saoudite.js"></script>
+<script type="text/javascript" src="belgique.js"></script>
+ -->
+ <script language="javascript" type="text/javascript">
+<!--
+function init()
+{
+	for (i=0; i<NTowns; i++ )
+		{
+		var option = new Option( Towns[i].TownName, 0);
+		document.getElementById('villeselect').options[(document.getElementById('villeselect').length)] = option;
+		}
+	Listevilles=document.getElementById('villeselect').selectedIndex = 7;
+	listboxvillechange();
+}
+//----------------------------------------------------------------------------
+function listboxvillechange()
+{
+	Listevilles=document.getElementById('villeselect');
+	var VilleNumSelect=-1;
+	var latitudeinput=0;
+	var longitudeinput=0;
+	for (var i=0; i<Listevilles.options.length; i++)
+		if (Listevilles.options[i].selected)     VilleNumSelect=i;
+	if (i ==-1)	{
+					VilleSelect="Ville non sélectionnée";
+					document.getElementById("lblCountryTown").innerHTML = "Ville non sélectionnée";
+					return;
+					}
+		else	{ 
+					VilleSelect=Listevilles.options[VilleNumSelect].text;
+					latitudeinput = Towns[VilleNumSelect].latitude;
+					longitudeinput =Towns[VilleNumSelect].longitude;
+					}
+
+	document.getElementById("lblCountryTown").innerHTML = VilleSelect+" ,  latitude="+latitudeinput+" ,  longitude="+longitudeinput;
+
+	var datedujour = new Date();
+	var jourinput=datedujour.getDate();
+	var moisinput=datedujour.getMonth()+1;
+	var anneeinput=datedujour.getFullYear();  
+	var reqURL = "calcst.php?anneeinput="+anneeinput+"&moisinput="+moisinput+"&jourinput="+jourinput+"&latitudeinput="+latitudeinput+"&longitudeinput="+longitudeinput+"&Conventioninput="+Conventioninput+"&Timezoneinput="+Timezoneinput+"&DSTinput="+DSTinput;
+//	document.getElementById("lblCountryTown").innerHTML = VilleSelect+" ,  latitude="+latitudeinput+" ,  longitude="+longitudeinput + "<br>"+reqURL;
+//	alert (reqURL);
+	$.ajax({
+		type: "GET",
+		url: reqURL,
+		dataType: "xml",
+		success: function(xml) {
+			var jourst = $(xml).find('day').get(0);		// pour un seul :
+//			document.getElementById("lblCountryTown").innerHTML	=	$(jourst).attr('countrytown');
+			document.getElementById("lblDay").innerHTML					=	$(jourst).attr('date_j_text');
+			document.getElementById("lblDate").innerHTML				=	$(jourst).attr('date');
+			document.getElementById("lblFajr").innerHTML				=	$(jourst).attr('fajr');
+			document.getElementById("lblChourouk").innerHTML		=	$(jourst).attr('chourouk');
+			document.getElementById("lblZhur").innerHTML				=	$(jourst).attr('zuhr');
+			document.getElementById("lblAsr").innerHTML					=	$(jourst).attr('asr');
+			document.getElementById("lblMaghrib").innerHTML			=	$(jourst).attr('maghrib');
+			document.getElementById("lblIsha").innerHTML				=	$(jourst).attr('isha');
+
+//<jours>
+//<jour erreurformatage="" day="Vendredi" date="27/4/2012" fajr="04:58" chourouk="06:23" zuhr="04:58" asr="06:23" maghrib="04:58" isha="06:23"/>
+//</jours>
+		}
+	});
+// pour le mois :
+	var  mytable = document.getElementById('points_table');
+	for( i = mytable.rows.length - 1; i > 0; i--)
+			mytable.deleteRow(i);
+	var reqURL = "calcst.php?anneeinput="+anneeinput+"&moisinput="+moisinput+"&latitudeinput="+latitudeinput+"&longitudeinput="+longitudeinput+"&Conventioninput="+Conventioninput+"&Timezoneinput="+Timezoneinput+"&DSTinput="+DSTinput+"&multiinput=m";
+	$.ajax({
+		type: "GET",
+		url: reqURL,
+		dataType: "xml",
+		success: function(xml) {
+			var moisst = $(xml).find('mounth').get(0);	
+			document.getElementById("lblmensuel").innerHTML =	$(moisst).attr('date_m_text') +" "+ $(moisst).attr('date_a');
+
+			$(xml).find('day').each(function(){
+				var mytablerow=mytable.insertRow( mytable.rows.length);
+				mytablerow.className='ct4'; // class=ct4 text-align:middle background-color: #dddddd;
+				var mytablecell=mytablerow.insertCell(0);
+				mytablecell.innerHTML		=	$(this).attr('date_j_text');
+				mytablecell.className='ct5';		// text-align:left;
+				mytablecell=mytablerow.insertCell(1);
+				mytablecell.innerHTML		=	$(this).attr('date_j');
+				mytablecell=mytablerow.insertCell(2);
+				mytablecell.innerHTML		=	$(this).attr('fajr');
+				mytablecell=mytablerow.insertCell(3);
+				mytablecell.innerHTML		=	$(this).attr('chourouk');
+				mytablecell=mytablerow.insertCell(4);
+				mytablecell.innerHTML		=	$(this).attr('zuhr');
+				mytablecell=mytablerow.insertCell(5);
+				mytablecell.innerHTML		=	$(this).attr('asr');
+				mytablecell=mytablerow.insertCell(6);
+				mytablecell.innerHTML		=	$(this).attr('maghrib');
+				mytablecell=mytablerow.insertCell(7);
+				mytablecell.innerHTML		=	$(this).attr('isha');
+			});
+		}
+	});
+}
+//----------------------------------------------------------------------------
+-->
+</script>
+
+<body onload="init()">
+<h4>Calcul des heures de prières</h4>
+<form id="formselect" name="formselect" enctype="multipart/form-data" method="post" action="">
+Ville &nbsp;: <select id="villeselect" name="villeselect" onchange="listboxvillechange()" style=" BACKGROUND-COLOR: #f2f2f2">
+	</select>
+
+</form>
+<hr />
+<b>Salat Time :</b><br>
+<span id="lblCountryTown">?</span><br>
+<span id="lblDay">?</span>
+<span id="lblDate">?</span><br>
+Fajr <span id="lblFajr">?</span><br>
+Chourouk <span id="lblChourouk">?</span><br>
+Zhur <span id="lblZhur">?</span><br>
+Asr <span id="lblAsr">?</span><br>
+Maghrib <span id="lblMaghrib">?</span><br>
+Isha <span id="lblIsha">?</span><br>
+<hr />
+Calendrier de prière du mois de : <b><span id="lblmensuel">?</span></b><br>
+
+<table id='points_table' cellpadding='0' cellspacing='0' border='1' class='tb'>
+	<tr class=ct2 height=24 valign=middle bgcolor=#3399FF>
+		<td>Jour</td>
+		<td>Date</td>
+		<td>Fajr</td>
+		<td>Chourouk</td>
+		<td>Zuhr</td>
+		<td>Asr</td>
+		<td>Maghrib</td>
+		<td>Isha</td>
+	</tr>
+</table>
+
+<hr>
+Contact : 
+	<script language="JavaScript">
+	<!--
+	var domain = "baghli.com";
+	var name = "lotfi";
+	document.write('<a href=\"mailto:' + name + '@' + domain + '\">');
+	document.write('webmaster</a>');
+	 -->
+	</script>
+<hr>
+	</body>
+</html>
